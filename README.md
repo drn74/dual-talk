@@ -95,25 +95,6 @@ The system follows a modular **Research -> Strategy -> Execution** lifecycle:
 
 ---
 
-## 📁 Project Structure
-```text
-├── main.py               # Main CLI and session entry point
-├── models/
-│   ├── agent.py          # Agent logic & Llama 3.2 formatting
-│   ├── context.py        # Context strategies (Full, Sliding, Summary)
-│   ├── critic.py         # Response quality evaluator
-│   ├── orchestrator.py   # Turn-taking and coordination
-│   ├── session_runner.py # Parallel session execution
-│   └── synthesis_agent.py # Parallel output aggregator
-├── utils/
-│   ├── memory.py         # SQLite & Artifact Extraction
-│   ├── topic_router.py   # Domain classification
-│   └── persona_library.py # Expert configurations
-└── GEMINI.md             # Technical mandate and internal docs
-```
-
----
-
 ## 📜 License
 MIT License. Free to use for research and development.
 
