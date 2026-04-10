@@ -6,6 +6,38 @@ Developed to simulate high-level brainstorming, formal specification drafting, a
 
 ---
 
+## 🏗️ System Architecture
+
+```text
+┌───────────────────────────────────────────────┐
+│               ORCHESTRATOR                    │
+│   (decide chi parla, quando, con quale goal)  │
+└──────────┬──────────────────┬─────────────────┘
+           │                  │
+    ┌──────▼──────┐    ┌──────▼──────┐
+    │  DOMAIN     │    │  DOMAIN     │
+    │  AGENT A    │    │  AGENT B    │
+    │  (Persona 1)│    │  (Persona 2)│
+    └──────┬──────┘    └──────┬──────┘
+           │                  │
+    ┌──────▼──────────────────▼──────┐
+    │         CRITIC AGENT           │
+    │  (valuta, rigetta, valida JSON)│
+    └──────────────┬─────────────────┘
+                   │
+    ┌──────────────▼─────────────────┐
+    │         MEMORY AGENT           │
+    │  (estrae, indicizza, recupera) │
+    └──────────────┬─────────────────┘
+                   │
+    ┌──────────────▼─────────────────┐
+    │        SYNTHESIS AGENT         │
+    │  (unifica, riassume, risolve)  │
+    └────────────────────────────────┘
+```
+
+---
+
 ## ✨ Key Features
 
 ### 🚀 Advanced Orchestration
