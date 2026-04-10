@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Configuration and Secrets
+config.json
+ex*.json
+conversation_*
+.env
+
+# Conversation Logs
+conversation_*.md
+
+# IDEs
+.vscode/
+.idea/
+
+# Other
+GEMINI.md
+_todel/

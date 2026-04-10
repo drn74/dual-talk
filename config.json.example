@@ -1,0 +1,73 @@
+{
+    "strategy": "full_history",
+    "topic": "Put your topic here",
+    "goal": "Define the goal of the conversation",
+    "model": "llama3.2:3b",
+    "window_size": 10,
+    "summary_threshold": 15,
+    "serper_api_key": "",
+    "agents": [
+        {
+            "name": "Agent A",
+            "persona": "The Visionary: Focus on bold innovation and long-term impact.",
+            "temperature": 0.8,
+            "top_p": 0.9,
+            "talk_ratio": 0.4,
+            "role_tags": ["innovation", "future", "vision"]
+        },
+        {
+            "name": "Agent B",
+            "persona": "The Pragmatist: Focus on feasibility and technical constraints.",
+            "temperature": 0.6,
+            "top_p": 0.85,
+            "talk_ratio": 0.4,
+            "role_tags": ["feasibility", "engineering", "constraints"]
+        },
+        {
+            "name": "Agent C",
+            "persona": "The Synthesis Expert: Merges ideas into a coherent whole.",
+            "temperature": 0.5,
+            "top_p": 0.8,
+            "talk_ratio": 0.2,
+            "role_tags": ["synthesis", "documentation", "structure"]
+        }
+    ],
+    "critic": {
+        "enabled": true,
+        "interval": 1,
+        "temperature": 0.3,
+        "top_p": 0.85,
+        "max_rejections_per_turn": 2,
+        "system_prompt": "You are a philosophical moderator. Your job is to ensure that the discussion remains grounded in logical arguments and avoids emotional fallacies. Respond ONLY with a JSON object: {\"verdict\": \"accept\" | \"reject\", \"reason\": \"string\", \"suggestion\": \"string\"}"
+    },
+    "orchestrator": {
+        "mode": "round_robin",
+        "max_turns": 20,
+        "inactivity_timeout_seconds": 120,
+        "termination_on_completed": true,
+        "termination_on_max_turns": true
+    },
+    "memory": {
+        "enabled": true,
+        "db_path": "memory.db",
+        "inject_on_start": true,
+        "max_injected_memories": 5,
+        "extract_every_n_turns": 3
+    },
+    "parallel_sessions": {
+        "enabled": false,
+        "subtopics": [
+            {"id": "syntax", "topic": "Syntax & Grammar Rules", "agents": ["Agent A", "Agent B"]},
+            {"id": "types", "topic": "Type System Design", "agents": ["Agent B", "Agent C"]},
+            {"id": "runtime", "topic": "Runtime & Execution Model", "agents": ["Agent A", "Agent C"]}
+        ],
+        "max_concurrent": 2,
+        "synthesis_on_completion": true
+    },
+    "auto_persona": {
+        "enabled": true,
+        "n_agents": 2,
+        "force_domains": [],
+        "exclude_domains": []
+    }
+}
