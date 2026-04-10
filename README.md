@@ -9,31 +9,43 @@ Developed to simulate high-level brainstorming, formal specification drafting, a
 ## 🏗️ System Architecture
 
 ```text
-┌───────────────────────────────────────────────┐
-│               ORCHESTRATOR                    │
-│   (decide chi parla, quando, con quale goal)  │
-└──────────┬──────────────────┬─────────────────┘
-           │                  │
-    ┌──────▼──────┐    ┌──────▼──────┐
-    │  DOMAIN     │    │  DOMAIN     │
-    │  AGENT A    │    │  AGENT B    │
-    │  (Persona 1)│    │  (Persona 2)│
-    └──────┬──────┘    └──────┬──────┘
-           │                  │
-    ┌──────▼──────────────────▼──────┐
-    │         CRITIC AGENT           │
-    │  (valuta, rigetta, valida JSON)│
-    └──────────────┬─────────────────┘
-                   │
-    ┌──────────────▼─────────────────┐
-    │         MEMORY AGENT           │
-    │  (estrae, indicizza, recupera) │
-    └──────────────┬─────────────────┘
-                   │
-    ┌──────────────▼─────────────────┐
-    │        SYNTHESIS AGENT         │
-    │  (unifica, riassume, risolve)  │
-    └────────────────────────────────┘
+┌───────────────────────────────────────────────────────────┐
+│                      TOPIC ROUTER                         │
+│   (Classifies Topic, Selects Personas & Context Strategy) │
+└──────────────┬─────────────────────────────┬──────────────┘
+               │                             │
+               ▼                             ▼
+    ┌───────────────────────┐     ┌───────────────────────┐
+    │    SINGLE SESSION     │     │   PARALLEL SESSIONS   │
+    │   (One Orchestrator)  │     │   (N Session Runners) │
+    └──────────┬────────────┘     └──────────┬────────────┘
+               │                             │
+               └──────────────┬──────────────┘
+                              ▼
+               ┌─────────────────────────────┐
+               │        ORCHESTRATOR         │
+               │ (Turns, Actions, Context)   │
+               └──────────────┬──────────────┘
+               ┌──────────────┴──────────────┐
+        ┌──────▼──────┐               ┌──────▼──────┐
+        │   AGENT A   │               │   AGENT B   │
+        └──────┬──────┘               └──────┬──────┘
+               └──────────────┬──────────────┘
+                              ▼
+               ┌─────────────────────────────┐
+               │        CRITIC AGENT         │
+               │ (Validation & Rejection)    │
+               └──────────────┬──────────────┘
+                              ▼
+               ┌─────────────────────────────┐
+               │        MEMORY AGENT         │
+               │ (SQLite, Extraction, RAG)   │
+               └──────────────┬──────────────┘
+                              ▼
+               ┌─────────────────────────────┐
+               │       SYNTHESIS AGENT       │
+               │ (Merging & Final Document)  │
+               └─────────────────────────────┘
 ```
 
 ---
