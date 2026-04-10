@@ -5,6 +5,7 @@
     "model": "llama3.2:3b",
     "window_size": 10,
     "summary_threshold": 15,
+    "max_turns": 20,
     "serper_api_key": "",
     "agents": [
         {
@@ -38,7 +39,7 @@
         "temperature": 0.3,
         "top_p": 0.85,
         "max_rejections_per_turn": 2,
-        "system_prompt": "You are a philosophical moderator. Your job is to ensure that the discussion remains grounded in logical arguments and avoids emotional fallacies. Respond ONLY with a JSON object: {\"verdict\": \"accept\" | \"reject\", \"reason\": \"string\", \"suggestion\": \"string\"}"
+        "system_prompt": "You are a logical moderator. Evaluate the last response. REJECT it if it breaks character or contains logical fallacies. Respond ONLY with a JSON object: {\"verdict\": \"accept\" | \"reject\", \"reason\": \"string\", \"suggestion\": \"string\"}."
     },
     "orchestrator": {
         "mode": "round_robin",
@@ -57,9 +58,8 @@
     "parallel_sessions": {
         "enabled": false,
         "subtopics": [
-            {"id": "syntax", "topic": "Syntax & Grammar Rules", "agents": ["Agent A", "Agent B"]},
-            {"id": "types", "topic": "Type System Design", "agents": ["Agent B", "Agent C"]},
-            {"id": "runtime", "topic": "Runtime & Execution Model", "agents": ["Agent A", "Agent C"]}
+            {"id": "topic1", "topic": "Subtopic A", "agents": ["Agent A", "Agent B"]},
+            {"id": "topic2", "topic": "Subtopic B", "agents": ["Agent B", "Agent C"]}
         ],
         "max_concurrent": 2,
         "synthesis_on_completion": true
